@@ -1,0 +1,303 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #0a0a0a;
+    color: #e8e8e8;
+    font-family: 'Segoe UI', system-ui, -apple-system, 'Inter', sans-serif;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+#starfield {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    display: block;
+    pointer-events: none;
+}
+
+.const-container {
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto;
+    animation: fadeUp 0.6s ease-out;
+}
+
+.const-card {
+    background: rgba(20, 20, 20, 0.92);
+    backdrop-filter: blur(12px);
+    border-radius: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+.const-header {
+    text-align: center;
+    padding: 28px 24px 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.const-header i {
+    display: none;
+}
+
+.const-header h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #ececec;
+    margin-bottom: 6px;
+}
+
+.const-header p {
+    font-size: 1rem;
+    color: #ccc;
+}
+
+.subheader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+    margin: 16px 24px 20px 24px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.8rem;
+    color: #aaa;
+}
+
+.subheader i {
+    font-size: 0.9rem;
+    color: #999;
+}
+
+.const-body {
+    padding: 0 32px 32px 32px;
+}
+
+.preamble {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 16px;
+    padding: 12px 16px;
+    margin-bottom: 24px;
+}
+
+.preamble i {
+    font-size: 1.1rem;
+    color: #aaa;
+    margin-top: 2px;
+}
+
+.preamble strong {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #ddd;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.preamble p {
+    font-size: 0.8rem;
+    color: #bcbcbc;
+    line-height: 1.45;
+    margin: 0;
+}
+
+.chapter {
+    margin-bottom: 28px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 20px;
+}
+
+.chapter.final {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.chapter-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #e8e8e8;
+    letter-spacing: -0.2px;
+}
+
+.chapter-header i {
+    font-size: 1.1rem;
+    color: #aaa;
+    width: 28px;
+}
+
+.section-title {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #ccc;
+    margin: 16px 0 12px 32px;
+    padding-left: 12px;
+    border-left: 2px solid #777;
+}
+
+.articles {
+    list-style: none;
+    margin-bottom: 8px;
+}
+
+.articles li {
+    font-size: 0.85rem;
+    color: #bcbcbc;
+    margin-bottom: 12px;
+    padding-left: 28px;
+    position: relative;
+    line-height: 1.5;
+}
+
+.articles li::before {
+    content: "•";
+    position: absolute;
+    left: 8px;
+    color: #8a8a8a;
+    font-size: 0.9rem;
+}
+
+.articles li strong {
+    color: #ddd;
+    font-weight: 600;
+}
+
+.footer-signature {
+    margin-top: 40px;
+    padding-top: 24px;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.signature-line {
+    width: 260px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 0 auto 20px;
+}
+
+.footer-signature p {
+    font-size: 0.8rem;
+    color: #aaa;
+    margin-bottom: 6px;
+}
+
+.signature-name {
+    font-family: 'Pinyon Script', cursive;
+    font-size: 56px;
+    color: #e0e0e0;
+    text-align: center;
+    margin: 15px 0 0 0;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.toast-video {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 220px;
+    z-index: 1000;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(4px);
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.toast-video video {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    pointer-events: none;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 750px) {
+    body {
+        padding: 12px;
+    }
+    .const-header {
+        padding: 20px 16px 8px;
+    }
+    .const-header h1 {
+        font-size: 1.6rem;
+    }
+    .const-body {
+        padding: 0 20px 24px 20px;
+    }
+    .subheader {
+        margin: 12px 16px 16px 16px;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+    .chapter-header {
+        font-size: 1rem;
+        gap: 10px;
+    }
+    .articles li {
+        font-size: 0.8rem;
+        padding-left: 20px;
+    }
+    .articles li::before {
+        left: 2px;
+    }
+    .section-title {
+        margin-left: 20px;
+    }
+    .signature-name {
+        font-size: 42px;
+    }
+    .toast-video {
+        width: 150px;
+        bottom: 12px;
+        right: 12px;
+    }
+}
