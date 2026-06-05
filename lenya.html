@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Леня · Республика Мальдения</title>
+    <link rel="icon" type="image/png" href="lenya.png">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* только сетка и карточки, не трогает основной дизайн */
+        .lenya-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 24px;
+            margin: 32px 0;
+        }
+        .lenya-card {
+            background: rgba(15, 15, 15, 0.6);
+            backdrop-filter: blur(8px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .lenya-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+        .lenya-video {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            display: block;
+            background: #000;
+        }
+        .lenya-caption {
+            padding: 10px 12px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #ccc;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .lenya-caption i {
+            margin-right: 8px;
+            color: #fff;
+        }
+        .lenya-buttons {
+            text-align: center;
+            margin: 20px 0 10px;
+        }
+        .lenya-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 8px 24px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.2s;
+            margin: 0 6px;
+        }
+        .lenya-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+        .remove-btn {
+            background: rgba(255, 70, 70, 0.15);
+            border-color: rgba(255, 70, 70, 0.4);
+            color: #ffb0b0;
+        }
+        .remove-btn:hover {
+            background: rgba(255, 70, 70, 0.3);
+        }
+        @media (max-width: 700px) {
+            .lenya-grid { gap: 16px; }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="starfield"></canvas>
+    <div class="const-container">
+        <div class="const-card">
+            <div class="const-header">
+                <i class="fas fa-crown"></i>
+                <div>
+                    <h1>ЛЕНЯ</h1>
+                    <p>Хранитель Республики Мальдения</p>
+                </div>
+            </div>
+            <div class="const-body">
+
+                <!-- краткая преамбула без терминала -->
+                <div class="preamble" style="justify-content: center; text-align: center;">
+                    <i class="fas fa-smile-wink"></i>
+                    <div>
+                        <strong>«Просто Леня»</strong>
+                        <p>Наблюдает, вдохновляет, ничего не делает — идеальный гражданин</p>
+                    </div>
+                </div>
+
+                <!-- сетка с Ленями -->
+                <div id="lenyaGrid" class="lenya-grid"></div>
+
+                <!-- кнопки управления -->
+                <div class="lenya-buttons">
+                    <button id="addLenyaBtn" class="lenya-btn"><i class="fas fa-plus-circle"></i> Добавить Леню</button>
+                    <button id="removeLenyaBtn" class="lenya-btn remove-btn"><i class="fas fa-trash-alt"></i> Убрать Леню</button>
+                </div>
+
+                <!-- подпись как в конституции -->
+                <div class="footer-signature">
+                    <div class="signature-line"></div>
+                    <p>Верховный хранитель безделья<br>Республики Мальдения</p>
+                    <div class="signature-name">Леня</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- угловое видео (как в конституции) -->
+    <div class="toast-video">
+        <video src="lenya.mp4" autoplay loop muted playsinline></video>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        (function() {
+            const grid = document.getElementById('lenyaGrid');
+            let count = 0;
+
+            function createLenyaCard() {
+                const card = document.createElement('div');
+                card.className = 'lenya-card';
+                card.innerHTML = `
+                    <video class="lenya-video" src="lenya.mp4" autoplay loop muted playsinline></video>
+                    <div class="lenya-caption">
+                        <i class="fas fa-eye"></i> Леня
+                    </div>
+                `;
+                return card;
+            }
+
+            // начальное состояние: 3 карточки, чтобы было «много»
+            function init() {
+                for (let i = 0; i < 3; i++) {
+                    grid.appendChild(createLenyaCard());
+                    count++;
+                }
+            }
+
+            function addLenya() {
+                grid.appendChild(createLenyaCard());
+                count++;
+            }
+
+            function removeLenya() {
+                if (count <= 1) return;
+                grid.removeChild(grid.lastElementChild);
+                count--;
+            }
+
+            document.getElementById('addLenyaBtn').addEventListener('click', addLenya);
+            document.getElementById('removeLenyaBtn').addEventListener('click', removeLenya);
+            init();
+        })();
+    </script>
+</body>
+</html>
